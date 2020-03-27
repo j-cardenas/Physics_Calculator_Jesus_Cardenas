@@ -69,7 +69,8 @@ void handleOption(string userOption)
     }
     else if(userOption == "E" || userOption == "e")
     {
-      cout << "\nEnd program. Hasta la vista, Baby!!" << endl; 
+      cout << "\033[2J\033[1;1H"; 
+      cout << "\x1b[" + to_string(31) + ";1m"<<"\nDracarys!" << endl; 
     }
     else
     {
@@ -79,6 +80,8 @@ void handleOption(string userOption)
 
 void showMenu()
 {
+  string color = "\x1b[" + to_string(32) + ";1m"; // Green color 
+  cout<<color;
   cout << "\nMENU" << endl; 
   cout << "A: print triangle patterns" <<endl; 
   cout << "B: even odd checker" << endl; 
