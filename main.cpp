@@ -1,6 +1,9 @@
-//Practice with Functions Student: yourName, Teacher: Dr_T
-//10-15-2019 updated 10-16-2019 and 3-24-2020
-#include "functions.h" //reference the header file 
+/*Physics calculator 
+Author: Jesus Cardenas, 
+Teacher: Dr_T
+*/
+
+#include "calculations.h"
 
 int main() 
 {
@@ -16,11 +19,11 @@ int main()
     //cin >> option; //getline(cin,option); //get the entire line
     cout << color; //change color, reference "string color" 
     option = validateString(option); 
-    cout << reset; //reset back to standard
+    cout <<endl<< reset; //reset back to standard
     handleOption(option); //call handleOption and pass the user option as an argument
     
   
-  }while(option != "e" && option != "E"); //DeMorgan's Law!!! 
+  }while(option != "g" && option != "G"); //DeMorgan's Law!!! 
   
   
  

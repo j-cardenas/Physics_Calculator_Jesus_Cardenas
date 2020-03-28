@@ -67,7 +67,7 @@ double validateDouble(double &doubleInput)
 {
 	while (true)
     {
-        cout << "Enter a number with or without decimals (double): ";
+        
 
         try
         {
