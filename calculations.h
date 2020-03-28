@@ -9,6 +9,8 @@ Teacher: Dr_T 10-17-2019
 #include <iostream>
 #include<string>
 #include "Input_Validation_Extended.h" 
+#include <cmath>
+
 using namespace std;
 
 //Function Prototypes 
@@ -171,28 +173,74 @@ void motionFunction(){
       cout<<c2;
       cout << "\n\tFunctions" << endl; 
       cout << c1<< "A:"<<c2<< " v = v0 + at" <<endl<<endl; 
-      cout << c1<< "B:"<<c2<< " s = s0 + v0t + ½at2" << endl<<endl; 
-      cout << c1<< "C:"<<c2<< " v2 = v02 + 2a(s − s0)" << endl<<endl; 
+      cout << c1<< "B:"<<c2<< " s = s0 + v0t + ½at^2" << endl<<endl; 
+      cout << c1<< "C:"<<c2<< " v^2 = v0^2 + 2a(s − s0)" << endl<<endl; 
       cout << c1<< "D:"<<c2<< " v̅ = ½(v + v0)" << endl<<endl; 
-      cout<< "What function would you like to use?";
+      cout<< "What function would you like to use? ";
       cout << reset;
       formulaOption = validateString(formulaOption);
 
       if(formulaOption == "A" || formulaOption == "a")
     {
-      cout<<"You selected: v = v0 + at";
+      cout << "\nYou selected: v = v0 + at";
+
+      cout << "\n\nWhat is the initial velocity? ";
+      v0=validateDouble(v0);
+      cout << "What is the acceleration? ";
+      a= validateDouble(a);
+      cout << "What is the time? ";
+      t=validateDouble(t);
+      v=(v0+(a*t)); //calculating velocity
+      cout <<"\t\tv = "<<v<<endl;
+
     }
     else if(formulaOption == "B" || formulaOption == "b")
     {
-      cout<<"You selected: s = s0 + v0t + ½at2";
+      cout<<"\nYou selected: s = s0 + v0t + ½at^2";
+      
+
+      cout <<"\n\nWhat is the initial displayment?";
+      s0=validateDouble(s0);
+      cout << "What is the initial velocity? ";
+      v0=validateDouble(v0);
+      cout << "What is the acceleration? ";
+      a= validateDouble(a);
+      cout << "What is the time? ";
+      t=validateDouble(t);
+      s=(s0+ (v0*t)+(0.5*a*(t*t))); //calculating displayment
+      cout <<"\t\ts = "<<s<<endl;
+
     }
     else if(formulaOption == "C" || formulaOption == "c")
     {
-      cout<<"You selected: v2 = v02 + 2a(s − s0";
+      cout<<"\nYou selected: v^2 = v0^2 + 2a(s − s0)";
+
+      cout <<"\n\nWhat is the initial displayment?";
+      s0=validateDouble(s0);
+      cout <<"What is the final displayment?";
+      s=validateDouble(s);
+      cout << "What is the initial velocity? ";
+      v0=validateDouble(v0);
+      cout << "What is the acceleration? ";
+      a= validateDouble(a);
+      
+      v=(v0*v0)+((2*a)*(s-s0)); //calculating v^2
+      cout <<"\t\tv^2 = "<<v<<" and v = "<<sqrt(v)<<endl;
+
     }
     else if(formulaOption == "D" || formulaOption == "d")
     { 
-      cout<<"You selected: v̅ = ½(v + v0)";
+      cout<<"\nYou selected: v̅ = ½(v + v0)";
+
+
+      cout << "\n\nWhat is the initial velocity? ";
+      v0=validateDouble(v0);
+      cout << "What is the final velocity? ";
+      v=validateDouble(v);
+      
+      dv= (0.5)*(v+v0); //calculating delta v
+      cout <<"\t\tv̅ = "<<dv<<endl;
+
     }
     
     else
