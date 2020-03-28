@@ -20,6 +20,7 @@ void handleOption(string); //function prototype
 void velocityFunction();
 void accelerationFunction();
 void motionFunction();
+void newtonsFunction();
 
 //put definitions here
 void showMenu() //Menu which user will see
@@ -67,7 +68,7 @@ void handleOption(string userOption)
     // D Newton's Second Law
     else if(userOption == "D" || userOption == "d")
     { 
-     
+     newtonsFunction();
     }
 
 
@@ -249,4 +250,25 @@ void motionFunction(){
     }
 
 }
+
+//Newton's Second Law (D)
+void newtonsFunction(){
+double mass=0, acceleration=0;
+string mU="", aU="";
+cout<<"You have selected: ∑F = ma ";
+cout<<"\nWhat is the mass? ";
+mass=validateDouble(mass);
+cout<<"What is the unit of measure for mass? ";
+mU=validateString(mU);
+cout<<"What is the acceleration? ";
+acceleration=validateDouble(acceleration);
+cout<<"Lastly, what is the unit of measure for acceleration? ";
+aU=validateString(aU);
+
+cout<<"\t\tN = "<<(mass*acceleration)<<" "<<mU<<"/"<<aU<<endl<<endl;
+
+
+}
+
+
 #endif
