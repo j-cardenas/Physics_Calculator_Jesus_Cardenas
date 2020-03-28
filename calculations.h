@@ -17,6 +17,7 @@ void showMenu();//Menu DON'T TOUCH
 void handleOption(string); //function prototype 
 void velocityFunction();
 void accelerationFunction();
+void motionFunction();
 
 //put definitions here
 void showMenu() //Menu which user will see
@@ -56,21 +57,10 @@ void handleOption(string userOption)
     // C Motion
     else if(userOption == "C" || userOption == "c")
     {
-
-      
-
-
-      string c1 = "\x1b[" + to_string(30) + ";1m"; // Green color 
-      string c2 = "\x1b[" + to_string(35) + ";1m" ;//  Red color
-      cout<<c2;
-      cout << "\n\tFunctions" << endl; 
-      cout << c1<< "A:"<<c2<< " v = v0 + at" <<endl<<endl; 
-      cout << c1<< "B:"<<c2<< " s = s0 + v0t + ½at2" << endl<<endl; 
-      cout << c1<< "C:"<<c2<< " v2 = v02 + 2a(s − s0)" << endl<<endl; 
-      cout << c1<< "D:"<<c2<< " v̅ = ½(v + v0)" << endl<<endl; 
-      cout<< "What function would you like to use?";
-
+        motionFunction();
     }
+     
+
 
     // D Newton's Second Law
     else if(userOption == "D" || userOption == "d")
@@ -160,6 +150,55 @@ double v0 = 0,vF=0, dt=0, acceleration=0;
 
       acceleration=(vF-v0)/dt; //calculatin velocity
       cout<<"\nAcceleration is "<< acceleration <<" "<<dvUnit<<"/"<<dtUnit<<endl<<endl;
+
+}
+
+//Motion function (C)
+void motionFunction(){
+  double v0,  //initial velocity
+         v,   //final velocity
+         a,   //acceleration
+         t,   //time
+         s,   //final displayment
+         s0,  //initial displayment
+         dv;  //delta velocity
+  string reset = "\x1b[0m";
+  string formulaOption;
+
+
+      string c1 = "\x1b[" + to_string(30) + ";1m"; // Green color 
+      string c2 = "\x1b[" + to_string(35) + ";1m" ;//  Red color
+      cout<<c2;
+      cout << "\n\tFunctions" << endl; 
+      cout << c1<< "A:"<<c2<< " v = v0 + at" <<endl<<endl; 
+      cout << c1<< "B:"<<c2<< " s = s0 + v0t + ½at2" << endl<<endl; 
+      cout << c1<< "C:"<<c2<< " v2 = v02 + 2a(s − s0)" << endl<<endl; 
+      cout << c1<< "D:"<<c2<< " v̅ = ½(v + v0)" << endl<<endl; 
+      cout<< "What function would you like to use?";
+      cout << reset;
+      formulaOption = validateString(formulaOption);
+
+      if(formulaOption == "A" || formulaOption == "a")
+    {
+      cout<<"You selected: v = v0 + at";
+    }
+    else if(formulaOption == "B" || formulaOption == "b")
+    {
+      cout<<"You selected: s = s0 + v0t + ½at2";
+    }
+    else if(formulaOption == "C" || formulaOption == "c")
+    {
+      cout<<"You selected: v2 = v02 + 2a(s − s0";
+    }
+    else if(formulaOption == "D" || formulaOption == "d")
+    { 
+      cout<<"You selected: v̅ = ½(v + v0)";
+    }
+    
+    else
+    {
+      cout << "\nInvalid input: try again." << endl; 
+    }
 
 }
 #endif
