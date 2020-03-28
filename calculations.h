@@ -21,7 +21,13 @@ void velocityFunction();
 void accelerationFunction();
 void motionFunction();
 void newtonsFunction();
+void weightFunction();
+void momentumFunction();
 
+
+string highlight="\x1b[" + to_string(41) + ";1m" ;
+string reset = "\x1b[0m";
+string bold = "\x1b[" + to_string(50) + ";1m" ;
 //put definitions here
 void showMenu() //Menu which user will see
 {
@@ -33,9 +39,9 @@ void showMenu() //Menu which user will see
   cout << red<< "B:"<<green<< " Acceleration" << endl; 
   cout << red<< "C:"<<green<< " Motion" << endl; 
   cout << red<< "D:"<<green<< " Newton's Second Law" << endl; 
-  cout << red<< "E:"<<green<< " Weight" <<endl;
-  cout << red<< "F:"<<green<< " Momentum" <<endl;
-  cout << red<< "G:"<<green<< " Exit" << endl; 
+  cout << red<< "F:"<<green<< " Weight" <<endl;
+  cout << red<< "H:"<<green<< " Momentum" <<endl;
+  cout << red<< "E:"<<green<< " Exit" << endl; 
   cout << red<< "X:"<<green<< " Clear the screen" << endl;  
 }
 
@@ -72,20 +78,20 @@ void handleOption(string userOption)
     }
 
 
-    // E Weight
-    else if(userOption == "E" || userOption == "e")
+    // F Weight
+    else if(userOption == "F" || userOption == "f")
     {
-      
+      weightFunction();
     }
 
     // F Momentum
-    else if(userOption == "F" || userOption == "f")
+    else if(userOption == "H" || userOption == "h")
     {
-      
+      momentumFunction();
     }
 /******************************************************************************/
     //Exit (DON'T TOUCH)
-    else if(userOption == "G" || userOption == "g")
+    else if(userOption == "e" || userOption == "E")
     {
       cout << "\033[2J\033[1;1H"; 
       cout << "\x1b[" + to_string(31) + ";1m"<<"\nDracarys!" << endl; 
@@ -119,8 +125,9 @@ double ds = 0, dt=0, velocity=0;
       string dsUnit= " ", dtUnit=" ";
 
 
-      cout << "\nLet's calculate velocity\n";
-      cout << "\nFirst, what is the displayment(dS)? :";
+      cout <<endl;
+      cout <<highlight<<"\t\tv  = ds / dt"<<reset<<endl;
+      cout << "\n\nFirst, what is the displayment(dS)? :";
       ds = validateDouble(ds); //cin >> ds; 
       cout <<"What unit of measure? ";
       dsUnit= validateString(dsUnit);
@@ -129,7 +136,7 @@ double ds = 0, dt=0, velocity=0;
       cout<< "Lastly, unit of measure for time: ";
       dtUnit= validateString(dtUnit);
       velocity=ds/dt; //calculatin velocity
-      cout<<"\n\t\tVelocity is "<< velocity <<" "<<dsUnit<<"/"<<dtUnit<<endl<<endl;
+      cout<<bold<<"\n\t\tVelocity is "<< velocity <<" "<<dsUnit<<"/"<<dtUnit<<reset<<endl<<endl;
 
 }
 
@@ -139,8 +146,10 @@ double v0 = 0,vF=0, dt=0, acceleration=0;
       string dvUnit= " ", dtUnit=" ";
 
 
-      cout << "\nLet's calculate acceleration\n";
-      cout << "\nFirst, what is the initial velocity? :";
+      cout <<endl;
+      cout<<highlight<<"\t\ta= dv/dt"<<reset<<endl;
+
+      cout << "\n\nFirst, what is the initial velocity? :";
       v0 = validateDouble(v0); 
       cout << "Final velocity? :" ;
       vF = validateDouble(vF); 
@@ -152,7 +161,7 @@ double v0 = 0,vF=0, dt=0, acceleration=0;
       dtUnit= validateString(dtUnit);
 
       acceleration=(vF-v0)/dt; //calculatin velocity
-      cout<<"\nAcceleration is "<< acceleration <<" "<<dvUnit<<"/"<<dtUnit<<endl<<endl;
+      cout<<bold<<"\nAcceleration is "<< acceleration <<" "<<dvUnit<<"/"<<dtUnit<<reset<<endl<<endl;
 
 }
 
@@ -169,8 +178,8 @@ void motionFunction(){
   string formulaOption;
 
 
-      string c1 = "\x1b[" + to_string(30) + ";1m"; // Green color 
-      string c2 = "\x1b[" + to_string(35) + ";1m" ;//  Red color
+      string c1 = "\x1b[" + to_string(30) + ";1m"; //  color 
+      string c2 = "\x1b[" + to_string(35) + ";1m" ;//  color
       cout<<c2;
       cout << "\n\tFunctions" << endl; 
       cout << c1<< "A:"<<c2<< " v = v0 + at" <<endl<<endl; 
@@ -181,9 +190,8 @@ void motionFunction(){
       cout << reset;
       formulaOption = validateString(formulaOption);
 
-      if(formulaOption == "A" || formulaOption == "a")
-    {
-      cout << "\nYou selected: v = v0 + at";
+    if(formulaOption == "A" || formulaOption == "a"){
+      cout <<highlight<< "\n\t\tv = v0 + at"<<reset;
 
       cout << "\n\nWhat is the initial velocity? ";
       v0=validateDouble(v0);
@@ -192,12 +200,12 @@ void motionFunction(){
       cout << "What is the time? ";
       t=validateDouble(t);
       v=(v0+(a*t)); //calculating velocity
-      cout <<"\t\tv = "<<v<<endl;
+      cout <<bold<<"\t\tv = "<<v<<reset<<endl;
 
     }
     else if(formulaOption == "B" || formulaOption == "b")
     {
-      cout<<"\nYou selected: s = s0 + v0t + ½at^2";
+      cout<<highlight<<"\n\t\ts = s0 + v0t + ½at^2"<<reset;
       
 
       cout <<"\n\nWhat is the initial displayment?";
@@ -209,12 +217,12 @@ void motionFunction(){
       cout << "What is the time? ";
       t=validateDouble(t);
       s=(s0+ (v0*t)+(0.5*a*(t*t))); //calculating displayment
-      cout <<"\t\ts = "<<s<<endl;
+      cout <<bold<<"\t\ts = "<<s<<reset<<endl;
 
     }
     else if(formulaOption == "C" || formulaOption == "c")
     {
-      cout<<"\nYou selected: v^2 = v0^2 + 2a(s − s0)";
+      cout<<highlight<<"\n\t\tv^2 = v0^2 + 2a(s − s0)"<<reset;
 
       cout <<"\n\nWhat is the initial displayment?";
       s0=validateDouble(s0);
@@ -226,12 +234,12 @@ void motionFunction(){
       a= validateDouble(a);
       
       v=(v0*v0)+((2*a)*(s-s0)); //calculating v^2
-      cout <<"\t\tv^2 = "<<v<<" and v = "<<sqrt(v)<<endl;
+      cout <<bold<<"\t\tv^2 = "<<v<<" and v = "<<sqrt(v)<<endl<<reset;
 
     }
     else if(formulaOption == "D" || formulaOption == "d")
     { 
-      cout<<"\nYou selected: v̅ = ½(v + v0)";
+      cout<<highlight<<"\n\t\t v̅ = ½(v + v0)"<<endl<<reset;
 
 
       cout << "\n\nWhat is the initial velocity? ";
@@ -240,35 +248,96 @@ void motionFunction(){
       v=validateDouble(v);
       
       dv= (0.5)*(v+v0); //calculating delta v
-      cout <<"\t\tv̅ = "<<dv<<endl;
+      cout <<bold<<"\t\tv̅ = "<<dv<<reset<<endl;
 
     }
     
     else
     {
-      cout << "\nInvalid input: try again." << endl; 
+       cout << "\nInvalid input: try again." << endl; 
     }
 
 }
 
 //Newton's Second Law (D)
-void newtonsFunction(){
-double mass=0, acceleration=0;
-string mU="", aU="";
-cout<<"You have selected: ∑F = ma ";
-cout<<"\nWhat is the mass? ";
-mass=validateDouble(mass);
-cout<<"What is the unit of measure for mass? ";
-mU=validateString(mU);
-cout<<"What is the acceleration? ";
-acceleration=validateDouble(acceleration);
-cout<<"Lastly, what is the unit of measure for acceleration? ";
-aU=validateString(aU);
+void newtonsFunction(){ 
 
-cout<<"\t\tN = "<<(mass*acceleration)<<" "<<mU<<"/"<<aU<<endl<<endl;
+    double mass=0, acceleration=0;
 
+    string mU="", aU="";
+
+
+    cout<<highlight;
+    cout<<"\t\t∑F = ma ";
+    cout<<reset;
+
+    cout<<"\nWhat is the mass? ";
+    mass=validateDouble(mass);
+    cout<<"What is the unit of measure for mass? ";
+    mU=validateString(mU);
+    cout<<"What is the acceleration? ";
+    acceleration=validateDouble(acceleration);
+    cout<<"Lastly, what is the unit of measure for acceleration? ";
+    aU=validateString(aU);
+
+    cout<<bold ;
+    cout<<"\t\tN = "<<(mass*acceleration)<<" "<<mU<<"/"<<aU<<endl<<endl<<reset;
 
 }
 
+//Weight function (F)
+void weightFunction(){
+  double mass=0, gravity=0;
+  string uM="";
+
+  cout<<highlight;
+  cout<<"\n\tWeight = Mass x Gravity ";
+  cout<<reset;
+
+
+  cout<<"\n\nWhat is the mass? ";
+  mass= validateDouble(mass);
+  cout<<"What is the force of gravity? ";
+  gravity= validateDouble(gravity);
+  cout<<"What is the expected unit of measurement? ";
+  uM = validateString(uM);
+
+
+
+  cout<<bold<<"\t\tWeight = "<<(mass*gravity)<<" "<<uM<<".\n\n"<<reset;
+}
+
+
+//Momentum function (H)
+void momentumFunction(){
+
+  double mass=0, velocity=0;
+  string uV="",uM;
+
+
+  cout<<bold <<"\tMomentum keeps me going. "<<reset;
+
+  cout<<highlight<<"\n\n\tMomentum = Mass x Velocity "<<reset<<endl;
+
+  cout<<"\nWhat is the mass? ";
+  mass = validateDouble(mass);
+
+  cout<<"Expected unit of measure for mass? ";
+  uM= validateString(uM);
+
+
+  cout<<"What is the velocity? ";
+  velocity = validateDouble(velocity);
+  cout<<"Expected unit of measure for velocity? ";
+  uV= validateString(uV);
+  
+
+  cout<< bold <<"\tMomentum = "<<(mass*velocity)<<" "<<uM<<"/" <<uV<<".\n\n"<<reset;
+
+
+
+
+
+}
 
 #endif

@@ -23,7 +23,7 @@ int main()
     handleOption(option); //call handleOption and pass the user option as an argument
     
   
-  }while(option != "g" && option != "G"); //DeMorgan's Law!!! 
+  }while(option != "e" && option != "E"); //DeMorgan's Law!!! 
   
   
  
